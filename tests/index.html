@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tests | jquery-toggly</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            table th,
+            table td {
+                text-align: left;
+                vertical-align: top;
+                padding: 6px;
+            }
+
+            table th {
+                width: 40%;
+                border-bottom: 2px solid #ddd;
+            }
+
+            table th:last-child {
+                width: 20%;
+            }
+
+            table tr.primary td {
+                border-bottom: 1px solid #ddd;
+            }
+
+            .toggly-collapsed {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>jquery-toggly Tests</h1>
+
+        <h2>Table Rows</h2>
+
+        <table>
+            <thead>
+                <tr class="primary">
+                    <th>Foo</th>
+                    <th>Bar</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="primary">
+                    <td>Foo</td>
+                    <td>Bar</td>
+                    <td></td>
+                </tr>
+                <tr class="secondary">
+                    <td colspan="3">
+                        <p>Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  </p>
+                        <p>Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  </p>
+                    </td>
+                </tr>
+                <tr class="primary">
+                    <td>Foo</td>
+                    <td>Bar</td>
+                    <td></td>
+                </tr>
+                <tr class="secondary">
+                    <td colspan="3">
+                        <p>Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  </p>
+                        <p>Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  Lorem ipsum dolor.  </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script src="../jquery.toggly.js"></script>
+
+        <script>
+            jQuery('tr.secondary').each(function () {
+                var $secondary = jQuery(this);
+
+                $secondary.toggly({
+                    anchor: {
+                        attachee: $secondary.prev('.primary').children(':last-child'),
+                        attachmentMethod: 'appendTo'
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
